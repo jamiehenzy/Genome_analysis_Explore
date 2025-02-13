@@ -25,7 +25,7 @@ To see the first few lines of the SAM output, run:
 
 You will see something like this:
 
-[SAM file](https://github.com/jamiehenzy/Genome_analysis_SE_R/blob/main/SAM.png)
+![SAM file](https://github.com/jamiehenzy/Genome_analysis_SE_R/blob/main/SAM.png)
 
 > @HD VN:1.0  SO:unsorted
 @SQ SN:gi|9626243|ref|NC_001416.1|  LN:48502
