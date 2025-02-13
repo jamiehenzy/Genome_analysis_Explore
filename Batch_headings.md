@@ -1,4 +1,4 @@
-### Running jobs on the cluster
+# Running jobs on the cluster
 
 Please see [the Research Computing website](https://rc-docs.northeastern.edu/en/latest/runningjobs/index.html) for full information.
 
