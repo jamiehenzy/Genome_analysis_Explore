@@ -23,7 +23,7 @@ To see the first few lines of the SAM output, run:
 
 `head eg1.sam`
 
-You will see something like this:
+You will see something like this, but with different values:
 
 ![SAM file](https://github.com/jamiehenzy/Genome_analysis_SE_R/blob/main/SAM.png)
 
