@@ -32,3 +32,5 @@ For example, I'd use ```squeue -u jhenzy```
 
 When the job runs, output and error files will appear in the folder in which you ran the script. Check their contents for any error messages, or to see that everything is running according to plan.
 
+If you need to cancel a job, use the command ```scancel <job_ID>```, supplying the specific job ID#.
+
