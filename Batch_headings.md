@@ -24,5 +24,11 @@ Before writing your batch script it's good to note the version numbers of any mo
 
 After saving the script, run it with the command:
 
-``` sbatch script_name.sh ```
+```sbatch script_name.sh```
+
+Check on its status with the command:
+```squeue -u user_name```
+For example, I'd use ```squeue -u jhenzy```
+
+When the job runs, output and error files will appear in the folder in which you ran the script. Check their contents for any error messages, or to see that everything is running according to plan.
 
