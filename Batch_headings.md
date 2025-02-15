@@ -2,7 +2,7 @@
 
 Please see [the Research Computing website](https://rc-docs.northeastern.edu/en/latest/runningjobs/index.html) for full information.
 
-Before writing your batch script it's good to note the version numbers of any modules you'll ask it to load, since from within nano you won't be able to use tab-complete.
+Before writing your batch script it's good to note the version numbers of any modules you'll ask it to load, since from within nano you won't be able to use tab-complete. Also, you do not need to be on a computing node to run the script, and you can specify any modules needed from within the script without loading them into your environment yourself.
 
 ## Headings for your batch script:
 
