@@ -1,4 +1,5 @@
-```#!/bin/bash
+```
+#!/bin/bash
 #SBATCH -J VCangsd                          # Job name
 #SBATCH -N 2                                # Number of nodes
 #SBATCH -n 16                               # Number of tasks
@@ -16,11 +17,11 @@ do
 	echo ${base}
 
 	samtools view -bhS ${base}.sam | samtools sort -o ${base}.bam
-
 done
 
 # create bam filelist
 ls *.bam > bam.filelist
 
 # calculate genotype likelihoods
-/courses/BIOL3411.202530/shared/conda_env/angsd_env/bin/angsd -bam bam.filelist -GL 1 -out genotype_likelihoods -doMaf 2 -SNP_pval 1e-2 -doMajorMinor 1```
+/courses/BIOL3411.202530/shared/conda_env/angsd_env/bin/angsd -bam bam.filelist -GL 1 -out genotype_likelihoods -doMaf 2 -SNP_pval 1e-2 -doMajorMinor 1
+```
