@@ -1,3 +1,5 @@
+The program ANGSD produces a more reader-friendly variant calling output than the bcftools we used for the lambda phage example. I ran the script below after I had aligned the Ppar "tiny" reads to the indexed genome using bowtie2. The folder in which I ran the script contained the six SAM files (one for each of the six fastq files aligned). *Note that the folder structure for our angsd_env is a bit different than what you saw on the Marine Genomics site.*
+
 ```
 #!/bin/bash
 #SBATCH -J VCangsd                          # Job name
