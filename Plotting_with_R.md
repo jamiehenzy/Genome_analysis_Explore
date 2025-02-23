@@ -5,7 +5,7 @@ We're again drawing some of this material from the STEMinist_R materials which c
 
 The R script for the exercises can be found [here](https://github.com/BayLab/MarineGenomicsData.git) 
 
-You can download just the R files for just this week via wget with the following link
+You can download just the R files for just this week via wget with the following link:
 ```html
 wget https://raw.githubusercontent.com/BayLab/MarineGenomicsData/main/week6_semester.tar.gz
 ```
