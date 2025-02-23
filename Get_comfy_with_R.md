@@ -1,34 +1,19 @@
 ---
-title: 
-author:
-date: 
-output:
-  bookdown::html_book:
-    toc: yes
-    css: toc.css
----
 
 ```{r setup_w5, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 # Week 5- The R environment
 
-![R icon](./figs/week5/R_icon.png)
+This lesson is modified from materials of the STEMinist_R lessons produced by several UC Davis graduate student and which can be found [here](https://github.com/ecalfee/STEMinist_R.git). 
 
-
-This lesson is modified from materials of the STEMinist_R lessons produced by several UC Davis graduate student and which can be found [here](https://github.com/ecalfee/STEMinist_R.git). The lessons were shortened here to fit into two sessions 75 minute sessions.
-
-These materials are evenly divided between live coding examples performed by the instructor and exercises performed by the students. 
-
-This class will take place with students typing directly into an R script for the exercises all of which can be found in the Week 5 semester file [here](https://github.com/BayLab/MarineGenomicsData.git) 
-
-You can download the R files for this week via wget in the terminal with the following link:
+You can download the R files for these exercises via wget in the terminal with the following link:
 
 ```{html
 wget https://raw.githubusercontent.com/BayLab/MarineGenomicsData/main/week5_semester.tar.gz
 ```
 
-this is a commpressed file which can be uncompressed via:
+This is a commpressed file that can be uncompressed via:
 ```
 tar -xzvf week5_semester.tar.gz
 ```
