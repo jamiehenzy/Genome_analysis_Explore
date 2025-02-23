@@ -304,6 +304,7 @@ ggplot(ChickWeight, aes(x=Time, y=weight, group=Diet, color=Diet))+
 
 <details><summary><span style="color: red;">Solution</span></summary>
 <p>
+  
 ```{r, label='5-24', echo=T}
 # we can just use the geom_smooth command from above and ggplot takes care of the rest!
 # The code below will only work if you stored your plot in object g.
