@@ -1,22 +1,16 @@
 # Plotting with R
 
-![R icon](./figs/week5/R_icon.png)
-
 We're again drawing some of this material from the STEMinist_R materials which can be found [here](https://github.com/ecalfee/STEMinist_R.git)
 
-## 2.1 Plotting 
 
-
-These lessons are evenly divided between live coding and performed by the instructor and exercises performed by the students in class with instructor support.
-
-This class will take place with students typing directly into an R script for the exercises all of which can be found in the Week 4 file [here](https://github.com/BayLab/MarineGenomicsData.git) 
+The R script for the exercises can be found [here](https://github.com/BayLab/MarineGenomicsData.git) 
 
 You can download just the R files for just this week via wget with the following link
 ```html
 wget https://raw.githubusercontent.com/BayLab/MarineGenomicsData/main/week6_semester.tar.gz
 ```
 
-this is a compressed file which can be uncompressed via:
+This is a compressed file that can be uncompressed via:
 ```html
 tar -xzvf week6_semester.tar.gz
 ```
