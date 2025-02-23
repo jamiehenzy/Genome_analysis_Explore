@@ -317,6 +317,7 @@ g+geom_smooth(method="lm")
 
 <details><summary><span style="color: red;">Solution</span></summary>
 <p>
+  
 ```{r, label='5-25', echo=T}
 ggplot(msleep, aes(y=sleep_total, x=as.factor(vore), fill=as.factor(vore)))+geom_boxplot()
 ```
@@ -327,6 +328,7 @@ ggplot(msleep, aes(y=sleep_total, x=as.factor(vore), fill=as.factor(vore)))+geom
 
 <details><summary><span style="color: red;">Solution</span></summary>
 <p>
+  
 ```{r, label='5-26', echo=T}
 ggplot(midwest, aes(y=area, x=popdensity, col=as.factor(state)))+geom_point()+facet_grid(~state)
 ```
@@ -336,6 +338,7 @@ ggplot(midwest, aes(y=area, x=popdensity, col=as.factor(state)))+geom_point()+fa
 
 <details><summary><span style="color: red;">Solution</span></summary>
 <p>
+  
 ```{r, label='5-27', echo=T}
 #we can subset our data first and store the subset in a new dataframe
 il<-midwest[midwest$state == "IL",]
@@ -347,6 +350,7 @@ ggplot(il, aes(x=popdensity, y=poptotal))+geom_point()
 
 <details><summary><span style="color: red;">Solution</span></summary>
 <p>
+  
 ```{r, label='5-28', echo=T}
 ggplot(midwest, aes(x=state, y=popdensity, color=state))+
   stat_summary(fun.y=mean, geom="point", size=1)+
