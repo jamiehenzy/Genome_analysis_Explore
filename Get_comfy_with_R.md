@@ -107,7 +107,8 @@ We can keep track of what objects R is using, with the functions `ls()` and `obj
 ```{r , echo=T}
 ls()
 
-objects() #returns the same results as ls() in this case. because we only have objects in our environment.
+objects()
+#returns the same results as ls() in this case. because we only have objects in our environment.
 # how to get help for a function; you can also write help()
 ?ls
 # you can get rid of objects you don't want
