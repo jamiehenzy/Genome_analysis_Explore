@@ -112,11 +112,11 @@ objects()
 ```
 #returns the same results as ls() in this case. because we only have objects in our environment.
 
-# how to get help for a function; you can also write help()
+### how to get help for a function; you can also write help()
 ?ls
-# you can get rid of objects you don't want
+### you can get rid of objects you don't want
 rm(numbers)
-# and make sure it got rid of them
+### and make sure it got rid of them
 ls()
 ```
 
