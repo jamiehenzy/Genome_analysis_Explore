@@ -139,6 +139,7 @@ ls()
         
 <details><summary><span style="color: blue;">Solution</span></summary>
 <p>
+        
 ```{r, echo=T}
 x <- c(2, 9, 3, 8, 3)
 x * 20
