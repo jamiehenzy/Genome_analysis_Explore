@@ -8,11 +8,13 @@ Before writing your batch script it's good to note the version numbers of any mo
 
 ```
 #!/bin/bash
-#SBATCH -J myjob                            # Job name
-#SBATCH -N 2                                # Number of nodes
-#SBATCH -n 16                               # Number of tasks
-#SBATCH -o output_%j.txt                    # Standard output file
-#SBATCH -e error_%j.txt                     # Standard error file
+
+#SBATCH –nodes=1
+#SBATCH –time=4:00:00
+#SBATCH –job-name=MyCPUJob
+#SBATCH –partition=courses
+#SBATCH –mail-type=ALL
+#SBATCH –mail-users=username@northeastern.edu
 
 # Load necessary modules, if needed
 
