@@ -1,94 +1,30 @@
----
-title: 
-author: 
-date: 
-output:
-  bookdown::html_book:
-    toc: yes
-    css: toc.css
----
+# What is a Genetic Variant?
 
-```{r setup4, include=FALSE}
-knitr::opts_chunk$set(comment = "#>", echo = TRUE, fig.width=4)
-```
-# Week 4- What is a Genetic Variant?
+The files we'll work with are in the course "data" folder. You should see 6 files with a `.fastq.gz` extension and 1 tiny genome file with a `.fna.gz` extension. Copy these into your own folder before working with them (remember to request a computing node before copying – these are large files).
 
-<center>
+The data are from an excellent marine genomics study on sea cucumber population genetics ([Xuereb et al. 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.14589)). For simplification, we're using only a subsample of the reference genome and raw reads from only 5 individuals of the species _Parastichopus californicus_. 
 
-<img src="figs/week4/Icon_SNP.png" width="300" height="300" />
-
-</center>
-
-
-You'll find the lecture discussing the definition and identification of genetic variation [here](https://github.com/BayLab/MarineGenomicsSemester/blob/main/ppt/MarineGenomics_Lecture_w4.pdf)
-
-We'll be working on the terminal in jetstream for the entirety of this lesson.
-
-Here is the road map of our actions for this class (as shown in lecture):
-
-![mapping variants](./figs/week4/roadmap_mapping.png)
-
-## To get started lets download the data and install a few programs
-
-Download the data from the MarineGenomicsData repository on git hub. We'll be working in the week4_semester.tar.gz file
-
-The data for this week comes from an excellent marine genomics study on sea cucumber population genetics ([Xuereb et al. 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.14589)). I have taken a sub-sample of the reference genome used in the paper (from the closely related sea cucumber Parastichopus parvimensis). I have also sub-sampled raw reads from 5 individuals of the study species  Parastichopus californicus from the paper. 
-
-```html
-wget https://raw.githubusercontent.com/BayLab/MarineGenomicsData/main/week4_semester.tar.gz
-```
-
-Uncompress the file using tar:
-
-```html
-tar -xzvf week4_semester.tar.gz
-
-```
-
-Next we need to install a few programs that will allow us to do what we need to do. This will all take a few minutes!
-
-The programs that we are installing:
+The programs we'll use are the following:
 
 + samtools: allows us to filter and view our mapped data
 + bowtie2: to map our reads to the reference genome
 + cutadapt: will trim adaptor sequences from the reads
 + fastqc: used to view the quality of the read files
++ angsd: will find variants from the aligned reads
 
-```html
-  sudo apt-get -y update && \
-  sudo apt-get -y install samtools bowtie2 cutadapt fastqc 
-  
-```
+Some of these tools are available as modules. Others are installed in conda environments that are available in the course "shared" folder.
+What additional module do you need to load in order to activate a conda environment?
 
-And one more program that we'll install separately. This is `angsd` which we will use to find variants in our data. The first command navigates you to your home directory.
+After you have loaded and/or activated the various programs, we're ready to get going. It's always good to first have a look at our data to make sure we know what (and where) everything is. Use UNIX commands to determine:
 
-```html
-  cd
-  git clone --recursive https://github.com/samtools/htslib.git
-  git clone https://github.com/ANGSD/angsd.git 
-  cd htslib;make;cd ../angsd ;make HTSSRC=../htslib
-  
-```
++ The header information of the genome sequence
++ What the read files look like
 
-Now we're ready to get going. The first thing we'll do is have a look at our data and directories to make sure we know where everything is. 
-
-```html
-$ ls
-
-
-```
-Change directories to the one that has the data MarineGenomics/week4. If you `ls` into this directory you should see 6 files with a `.fastq.gz` extension and 1 tiny genome file with a `.fna.gz` extension.
-
+How could you use simple UNIX commands to determine how many reads are contained in the fastq files? (Note: Unless you have already unzipped them, they are in a compressed format.)
 
 ## Raw read quality control
 
-For the sake of time we've make this an optional activity for you to pursue on your own time
-
-<details><summary>Raw read quality control</summary>
-<p>
-
-
-Next let's use the program fastqc to check the quality of our data files
+Remember how in the first assignment, we got a feel for the quality of reads by using `grep` to search for occurrences of multiple N's? Well as you may have guessed, there ARE more sophisticated tools to determine the overall quality of a set of reads! The program `fastqc` can do this, with this command:
 
 ```html
 $ fastqc SRR6805880.tiny.fastq.gz
@@ -110,7 +46,7 @@ SRR6805880.tiny_fastqc.html  SRR6805882.tiny.fastq.gz    SRR6805885.tiny.fastq.g
 
 ```
 
-Looks good! Fastqc generated two outputs for us, a `.html` and a `.zip` directory
+Looks good! Fastqc generated two outputs for us – a `.html` and a `.zip` directory. Notice also that the command worked on compressed files. It will work on either compressed or unzipped files.
 
 Let's run fastqc on the remaining files, and then we'll take a look at the output. You may have noticed fastqc just used the same file name to produce our output with different extensions. We can take advantage of that by running fastqc on all our datafiles with the wildcard `*`.
 
@@ -120,15 +56,15 @@ $ fastqc SRR680588*
 ```
 You'll see you initially get an error message because fastqc doesn't see the .fastq file extension on some of our files. It simply skips these and moves on the the next file. 
 
-To view the output of fastqc, we'll minimize our terminal and look at our `Home` folder on our jetstream desktop. This is the same home directory that we've been working in through the terminal. Go to the directory where you were running fastqc and find an .html file. Double click it and it should open a web browser with the output data. We'll go over how to interpret this file in class.
-
-</p>
-</details>
-&nbsp;
+To view the output of fastqc, we'll go to the OOD portal of Explorer and view our files from there. Use "change directory" to type in the file path of the directory you've been working in for this exercise. When you see your files displayed on OOD, you can use the dropdown menu next to any html file that was produced and either hit "view" or "download". Voilá! You should see a beautiful graphic output displaying various aspects of your data quality!
 
 ## Trimming to remove adapters
 
-There are many programs that can be used to trim sequence files. We'll use the same paper that was used in the Xuereb et al. 2018 paper [here](https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.14589). Cutadapt is relatively easy to run with the code below, once we have identified our adaptor sequence and takes the general form below.
+Use `less` or `cat` to scan one of the read files. You should notice that the first few bases of each read are exactly the same. Why would that be?
+
+Sequencing reads sometimes contains some bases from the adaptors at the ends of the reads. These are not part of the sequence-of-interest and need to be ignored in any analysis. 
+
+There are many programs that can be used to "trim" such sequences from the reads. Keep in mind they are only trimming from the read data, and not from any actual molecules of DNA. The program "cutadapt" is relatively easy to run with the code below, once we have identified our adaptor sequence, and takes the general form below.
 
 
 ```html
