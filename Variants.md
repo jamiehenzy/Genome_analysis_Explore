@@ -1,6 +1,6 @@
 # What is a Genetic Variant?
 
-The files we'll work with are in the course "data" folder. You should see 6 files with a `.fastq.gz` extension and 1 tiny genome file with a `.fna.gz` extension. Copy these into your own folder before working with them (remember to request a computing node before copying – these are large files).
+The files we'll work with are in the course "data" folder. You should see 6 files with a `.fastq.gz` extension and 1 genome file with a `.fna.gz` extension. Copy these into your own folder before working with them (remember to request a computing node before copying – these are large files).
 
 The data are from an excellent marine genomics study on sea cucumber population genetics ([Xuereb et al. 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.14589)). For simplification, we're using only a subsample of the reference genome and raw reads from only 5 individuals of the species _Parastichopus californicus_. 
 
@@ -102,6 +102,7 @@ You can check if the trimmed files are there with:
 ```html
 ls *trimmed*
 ```
+And you can use `less` to check that the starts of the reads in a file are no longer identical, since the portion representing adapter sequence has been removed.
 
 Our reads are now ready to be mapped to the genome.
 
@@ -175,84 +176,25 @@ Look at the list:
 cat bam.filelist
 ```
 
-Run the following code to calculate genotype likelihoods
+We want to run the command `angsd` in angsd program to calculate genotype likelihoods. Take a look at the files in the angsd_env folder to see if you can find the `angsd` command. Hint: commands are often listed in a folder called "bin"! 
+
+Now alter the command given below to reflect the path for the `angsd` command. Write a bash script that loads anaconda3, activates the angsd conda environment, and runs the command. Think carefully about where the script is running from, and whether the program will be able to find the `angsd` command and your "bam.filelist" file.
 
 ```html
 
-../../angsd/angsd -bam bam.filelist -GL 1 -out genotype_likelihoods -doMaf 2 -SNP_pval 1e-2 -doMajorMinor 1
+<path_to>/angsd -bam bam.filelist -GL 1 -out genotype_likelihoods -doMaf 2 -SNP_pval 1e-2 -doMajorMinor 1
 
 ```
 
-This will generate two files, one with a .arg extension, this has a record of the script we ran to generate the output, and a .maf file that will give you the minor allele frequencies and is the main output file. If you see these two files, Yay!! We did it!
+If the script worked, you'll see two new files. The file with a .arg extension contains a record of the script we ran to generate the output,  and a .maf file contains the minor allele frequencies and is the main output file. We'll go over the components of the .maf file in class.
 
 
+### In-class exercises
+1. Map the untrimmed files to the genome. How do the alignments compare?
 
-### Suggested Exercises
-> For our coding session you can re-run through the above code as it is written. You can also do the below suggestions to extend or modify what we did in Tuesdays class. 
+2. Use cutadapt to trim the sequences to 70 bp like they did in the Xuereb et al. 2018 paper. Write the output of cutadapt to an .70bp.trimmed.fastq.gz and then map these 70bp, trimmed reads to the genome. How do they compare to our .trimmed reads?
 
-> A possible answer is located beneath each activity, but it's possible you will correctly perform the suggestion in a different way. 
+3. Change the parameters of the angsd genotype likelihoods command. How many more/less SNPs do we recover if we lower or raise the SNP p-value? 
 
+4. Run fastqc on our .trimmed reads and compare the html with the untrimmed files. 
 
-> 1. map the untrimmed files to the genome. How do the alignments compare?
-
-<details><summary><span style="color: purple;">Solution</span></summary>
-<p>
-
-> 1. As a for loop:
-> `for filename in *tiny.fastq.gz; do base=$(basename $filename .tiny.fastq.gz); echo=${base}; bowtie2 -x Ppar_tinygenome -U ${base}.tiny.fastq.gz -S ${base}.nottrimmed.sam; done`
-
-> You should see something that by trimming the adapters off we get a higher overall mapping rate:
-
-> ![results](./figs/week4/trimm_notrimm_thatisthequestion.jpg)
-
-</p>
-</details>
-&nbsp;
-
-
-
-> 2. Run the mapping for loop as a shell script using bash (i.e., store the for loop in a text editor (NANOs or other) and execute the .sh script with bash)
-
-<details><summary><span style="color: purple;">Solution</span></summary>
-<p>
-
-> 2. this can be done by copying and pasting the for loop in a text editor that you save as for example `map_samples_bowtie2.sh`. This script is then executed by `bash map_samples_bowtie2.sh`
-
-</p>
-</details>
-&nbsp;
-
-
-> 3. use cutadapt to trim the sequences to 70 bp like they did in the Xuereb et al. 2018 paper. Write the output of cutadapt to an .70bp.trimmed.fastq.gz and then map these 70bp, trimmed reads to the genome. How do they compare to our .trimmed reads?
-
-<details><summary><span style="color: purple;">Solution</span></summary>
-<p>
-> 3. to find the parameter for maximum read length in cutadapt: `cutadapt - help` There are a few ways to do this.
-> `cutadapt -g TGCAG ${base}.tiny.fastq.gz -u 70 -o ${base}.tiny_70bp_trimmed.fastq.gz` 
-
-</p>
-</details>
-&nbsp;
-
-
-> 4. change the parameters of the angsd genotype likelihoods command. How many more/less SNPs do we recover if we lower or raise the SNP p-value? To see what the other parameters do run `../../angsd/angsd -h
-
-<details><summary><span style="color: purple;">Solution</span></summary>
-<p>
-
-> 4. If we remove the `-SNP_pval` command entirely we get ~72000 sites retained! Wow! That seems like a lot given our ~20% maping rate. If you instead increase the p-value threshold to 1e-3 we find 3 SNPs.
-
-</p>
-</details>
-&nbsp;
-
-> 5. Run fastqc on our .trimmed reads and compare the html with the untrimmed files. 
-
-<details><summary><span style="color: purple;">Solution</span></summary>
-<p>
-
-> 5. We should no longer see the red error flag for the per base sequence quality or base pairs conten. code: fastqc *trimmed.fastq.gz 
-
-</p>
-</details>
-&nbsp;
