@@ -1,10 +1,20 @@
+This last component of the "Explore" assignment pulls together what you've learned from the previous components while introducing you to another powerful tool for indexing genomes and aligning reads – STAR (Spliced Transcripts Alignment to a Reference). When reads are from RNA transcripts, a given read may span two exons which can be separated by thousands of base pairs! As the name implies, STAR is especially powerful for aligning spliced reads to genomes. 
+
+For this assignment, you are given less guidance because you are expected to use knowledge you have gained in previous assignments and class. However, please always remember to request a computing node before beginning any work.
+
 # Day lab RNA-seq data
 
 The lab of NU researcher Tovah Day generated some RNA-seq data from an experiment you'll learn more about for the differential gene expression assignment. You'll find the files in our course data folder. For now, we want to:
 
 + assess the quality of the reads and do any necessary modifications
-+ index the human genome
-+ align the reads
++ index the human genome (with STAR)
++ align the reads (with STAR)
+
+## Gather the files
+
+You'll need the **human genome fasta file** and **gtf file**, both of which you downloaded in the Genomes_tutorial.
+
+You'll also need to write a script (bash or BATCH) to copy the **Day_lab_reads** from the course "data" folder into your own directory.
 
 ## Raw read quality control
 
@@ -14,70 +24,34 @@ What's the program you can use to generate those snazzy quality control reports?
 $ <program_name_here> <file_name>*
 
 ```
-You initially get an error message because fastqc doesn't see the .fastq file extension on some of our files. It simply skips these and moves on the the next file. 
+Remember that to view the reports, you need to access the html files through the OOD portal of Explorer. 
 
-To view the output of fastqc, we'll go to the OOD portal of Explorer and view our files from there. Use "change directory" to type in the file path of the directory you've been working in for this exercise. When you see your files displayed on OOD, you can use the dropdown menu next to any html file that was produced and either hit "view" or "download". 
-
-Voilá! You should see a beautiful graphic output displaying various aspects of your data quality!
-
-## Trimming to remove adapters
-
-Use `less` or `cat` to scan one of the read files. You should notice that the first few bases of each read are exactly the same. Why would that be?
-
-Sequencing machines sometimes read into part of the adaptor for various reasons, resulting in some bases from the adaptors at the ends of the reads. These are not part of the sequence-of-interest and need to be ignored in any analysis. 
-
-There are many programs that can be used to "trim" such sequences from the reads. Keep in mind they are only trimming from the read data, and not from any actual molecules of DNA. The program "cutadapt" is relatively easy to run with the code below, once we have identified our adaptor sequence, and takes the general form below.
-
-
-```html
-$ cutadapt -g SEQUENCETOTRIM -o name_of_input_file name_of_output_file 
-
-```
-
-Let's do this on one of our files to test it out.
-
-```html
-cutadapt -g TGCAG SRR6805880.tiny.fastq.gz -o SRR6805880.tiny_trimmed.fastq.gz 
-
-```
-This works for a single file, but if we want to do it for all our read files we need to either do them all individually (slow and error prone) or use a for loop.
-
-```html
-
-for filename in *.tiny.fastq.gz
-do
-
-  base=$(basename $filename .tiny.fastq.gz)
-  echo ${base}
-
-  cutadapt -g TGCAG ${base}.tiny.fastq.gz -o ${base}.tiny_trimmed.fastq.gz 
-
-done
-
-```
-
-Yay! You should see a little report for each of these files showing how many reads were trimmed and some other info (how long are the reads, etc.).
-
-You can check if the trimmed files are there with:
-```html
-ls *trimmed*
-```
-And you can use `less` to check that the starts of the reads in a file are no longer identical, since the portion representing adapter sequence has been removed.
-
-Our reads are now ready to be mapped to the genome.
+*Are there any red flags? Use chat or claude to help you figure out if you should be concerned.
+*Do you need to trim the sequences?
 
 ## Building an index of our genome
 
-First we have to index our genome. We'll do that with the bowtie2-build command. This will generate a lot of files that describe different aspects of our genome
-
-We give bowtie2-build two things, the name of our genome, and a general name to label the output files. I always keep the name of the output files the same as the original genome file (without the .fna.gz extension) to avoid confusion (what's this file for?).
+We'll use STAR to index our genome. Write a BATCH script to do this, and note that it can take several hours for the task to complete. By default, task time has a limit of four hours, but we can increase it by adding a line to our header:
 
 ```html
+#!/bin/bash
+#SBATCH -J indxJH
+#SBATCH -N 2
+#SBATCH -n 16
+#SBATCH -o output_%j.txt
+#SBATCH -e error_%j.txt
+#SBATCH -t 24:00:00
 
-bowtie2-build Ppar_tinygenome.fna.gz Ppar_tinygenome
+#Load the STAR module
+module load star/2.7.11b
+
+#Run the indexing command (you'll need to customize to reflect the locations of your files)
+STAR --runMode genomeGenerate --genomeDir ref/ --genomeFastaFiles Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa --sjdbGTFfile Homo_sapiens.GRCh38.113.gtf --runThreadN 16
+
+![image](https://github.com/user-attachments/assets/4ea405d9-6674-4227-b3df-5bf475be37fc)
 
 ```
-This should produce several output files with extensions including: .bt2 and rev.1.bt2 etc (six files in total)
+If it works, you'll see fourteen files added to your directory.
 
 ## Map reads to the genome
 
