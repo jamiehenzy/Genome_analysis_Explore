@@ -20,7 +20,7 @@ After you have loaded and/or activated the various programs, we're ready to get 
 + The header information of the genome sequence
 + What the read files look like
 
-How could you use simple UNIX commands to determine how many reads are contained in the fastq files? (Note: Unless you have already unzipped them, they are in a compressed format.)
+How could you use simple UNIX commands to determine how many reads are contained in the fastq files? 
 
 ## Raw read quality control
 
@@ -35,7 +35,7 @@ $ fastqc SRR6805880.tiny.fastq.gz
   + Analysis complete for SRR6805880.tiny.fastq.gz
 
 
-Let's look to see that it worked
+Let's check that it worked
 ```html
 $ ls
 
@@ -46,23 +46,25 @@ SRR6805880.tiny_fastqc.html  SRR6805882.tiny.fastq.gz    SRR6805885.tiny.fastq.g
 
 ```
 
-Looks good! Fastqc generated two outputs for us – a `.html` and a `.zip` directory. Notice also that the command worked on compressed files. It will work on either compressed or unzipped files.
+Looks good! Fastqc generated two outputs for us – a `.html` and a `.zip` directory. Notice also that the command worked on compressed files. It will work on either compressed OR uncompressed files.
 
-Let's run fastqc on the remaining files, and then we'll take a look at the output. You may have noticed fastqc just used the same file name to produce our output with different extensions. We can take advantage of that by running fastqc on all our datafiles with the wildcard `*`.
+Let's run fastqc on the remaining files, then look at the output. You may have noticed fastqc just used the same file name to produce our output with different extensions. We can take advantage of that by running fastqc on all our datafiles with the wildcard `*`.
 
 ```html
 $ fastqc SRR680588*
 
 ```
-You'll see you initially get an error message because fastqc doesn't see the .fastq file extension on some of our files. It simply skips these and moves on the the next file. 
+You initially get an error message because fastqc doesn't see the .fastq file extension on some of our files. It simply skips these and moves on the the next file. 
 
-To view the output of fastqc, we'll go to the OOD portal of Explorer and view our files from there. Use "change directory" to type in the file path of the directory you've been working in for this exercise. When you see your files displayed on OOD, you can use the dropdown menu next to any html file that was produced and either hit "view" or "download". Voilá! You should see a beautiful graphic output displaying various aspects of your data quality!
+To view the output of fastqc, we'll go to the OOD portal of Explorer and view our files from there. Use "change directory" to type in the file path of the directory you've been working in for this exercise. When you see your files displayed on OOD, you can use the dropdown menu next to any html file that was produced and either hit "view" or "download". 
+
+Voilá! You should see a beautiful graphic output displaying various aspects of your data quality!
 
 ## Trimming to remove adapters
 
 Use `less` or `cat` to scan one of the read files. You should notice that the first few bases of each read are exactly the same. Why would that be?
 
-Sequencing reads sometimes contains some bases from the adaptors at the ends of the reads. These are not part of the sequence-of-interest and need to be ignored in any analysis. 
+Sequencing machines sometimes read into part of the adaptor for various reasons, resulting in some bases from the adaptors at the ends of the reads. These are not part of the sequence-of-interest and need to be ignored in any analysis. 
 
 There are many programs that can be used to "trim" such sequences from the reads. Keep in mind they are only trimming from the read data, and not from any actual molecules of DNA. The program "cutadapt" is relatively easy to run with the code below, once we have identified our adaptor sequence, and takes the general form below.
 
@@ -94,7 +96,7 @@ done
 
 ```
 
-Yay! You should see a little report for each of these files that showing how many reads were trimmed and some other info (how long are the reads, etc)
+Yay! You should see a little report for each of these files showing how many reads were trimmed and some other info (how long are the reads, etc.).
 
 You can check if the trimmed files are there with:
 ```html
