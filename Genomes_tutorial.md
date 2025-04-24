@@ -54,16 +54,15 @@ Create a directory in your student folder on Explorer for genomic data, with a R
 *	Where to access the genome sequence
 * At what coverage it was sequenced
 
-### Explore the sequences using Explorer modules!
+### Explore the sequences
 
-To obtain information about the genome sequences, you'll use two programs, one of which is available as a conda environment and the other, as a **module** on Explorer: emboss and seqtk.
+To obtain information about the genome sequences, you'll use a program, emboss, that is available as a conda environment and the other, as a **module** on Explorer: emboss and seqtk.
 
-You need to **load** the modules into your workspace to use them.
-
-`module load emboss`
+You need to **load** the seqtk module into your workspace:
 
 `module load seqtk`
 
+And you'll need to load the anaconda
 Check that it worked. To see which modules are loaded into your current session:
 
 `module list`
