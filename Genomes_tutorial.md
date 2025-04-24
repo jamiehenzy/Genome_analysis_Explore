@@ -56,20 +56,21 @@ Create a directory in your student folder on Explorer for genomic data, with a R
 
 ### Explore the sequences
 
-To obtain information about the genome sequences, you'll use a program, emboss, that is available as a conda environment and the other, as a **module** on Explorer: emboss and seqtk.
+To obtain general information about the genome sequences, you'll use a program, emboss, that is available as a conda environment. To use a conda environment you'll need to load the anaconda3/2024.06 module (2024.06 gives info on the version). 
 
-You need to **load** the seqtk module into your workspace:
+`module load anaconda3/2024.06`
 
-`module load seqtk`
-
-And you'll need to load the anaconda
 Check that it worked. To see which modules are loaded into your current session:
 
 `module list`
 
-You should see emboss and seqtk among those shown.
+Now you have to activate the conda environment, using the `source activate` command and the path to the files that are in the course "shared" folder:
 
-You can use the emboss command `infoseq` to see what a file contains:
+`source activate /courses/BIOL3411.202540/shared/conda_env/emboss_env`
+
+After entering the command, you'll see that your prompt includes the path of the environment.
+
+Now you can use the emboss command `infoseq` to see what a file contains:
 
 `infoseq <filename>`
 
@@ -79,30 +80,6 @@ You can use the emboss command `infoseq` to see what a file contains:
 * Which sequence in the worm genome has the lowest GC%?
 * Which sequence in Borrelia has the highest GC%?
 
-What if you wanted to extract one of the sequences into a new file for further analysis. For example, let's extract the Borrelia sequence with the highest GC%. You can use a command from the program **seqtk** to extract a sequence. First you need to put the sequence identifier (usually the accession number) into a file. You can do this quickly using echo. 
+**Remember to practice using tab-complete to save time and prevent mistakes!**
 
-`echo '<identifier>'  >  <make-up-a-filename>`
 
-For example, it might look like this:
-
-`echo 'NC_008524.2' > list.txt`
-
-**Note: I'm using a different accession number as an example**
-
-This will create a file called list.txt that contains just one line: NC_008524.2.
-
-Then use the command that tells seqtk to extract that sequence from the larger file and store it in a new file by itself:
-
-`seqtk subseq <file-with-many-sequences> list.txt > NC_008524.2.txt`
-
-The sequence portion of a file is often presented as all one line, so using the `head` command just outputs the entire sequence. Which command allows you to view the contents in a more controlled way? Use it to note the first three and last three letters of the sequence (write them down).
-
-Now we can generate the **reverse complement** of this sequence, representing the complementary strand. We'll put it into a new file:
-
-`revseq NC_008524.2.txt NC_008524.2.rev`
-
-**Remember to keep using tab-complete, and check after commands that the new file is added to your directory by using ls.**
-
-Look at the contents of the .rev file. Are you convinced this is the reverse complement?
-
-Now perform the same set of operations on the worm sequence that had the lowest GC%!
