@@ -1,0 +1,159 @@
+# Day lab RNA-seq data
+
+The lab of NU researcher Tovah Day generated some RNA-seq data from an experiment you'll learn more about for the differential gene expression assignment. You'll find the files in our course data folder. For now, we want to:
+
++ assess the quality of the reads and do any necessary modifications
++ index the human genome
++ align the reads
+
+## Raw read quality control
+
+What's the program you can use to generate those snazzy quality control reports? In a previous tutorial, you used a wildcard in the filenames to run the program on all the files. Run it and look for any red flags in the reports.
+
+```html
+$ <program_name_here> <file_name>*
+
+```
+You initially get an error message because fastqc doesn't see the .fastq file extension on some of our files. It simply skips these and moves on the the next file. 
+
+To view the output of fastqc, we'll go to the OOD portal of Explorer and view our files from there. Use "change directory" to type in the file path of the directory you've been working in for this exercise. When you see your files displayed on OOD, you can use the dropdown menu next to any html file that was produced and either hit "view" or "download". 
+
+Voilá! You should see a beautiful graphic output displaying various aspects of your data quality!
+
+## Trimming to remove adapters
+
+Use `less` or `cat` to scan one of the read files. You should notice that the first few bases of each read are exactly the same. Why would that be?
+
+Sequencing machines sometimes read into part of the adaptor for various reasons, resulting in some bases from the adaptors at the ends of the reads. These are not part of the sequence-of-interest and need to be ignored in any analysis. 
+
+There are many programs that can be used to "trim" such sequences from the reads. Keep in mind they are only trimming from the read data, and not from any actual molecules of DNA. The program "cutadapt" is relatively easy to run with the code below, once we have identified our adaptor sequence, and takes the general form below.
+
+
+```html
+$ cutadapt -g SEQUENCETOTRIM -o name_of_input_file name_of_output_file 
+
+```
+
+Let's do this on one of our files to test it out.
+
+```html
+cutadapt -g TGCAG SRR6805880.tiny.fastq.gz -o SRR6805880.tiny_trimmed.fastq.gz 
+
+```
+This works for a single file, but if we want to do it for all our read files we need to either do them all individually (slow and error prone) or use a for loop.
+
+```html
+
+for filename in *.tiny.fastq.gz
+do
+
+  base=$(basename $filename .tiny.fastq.gz)
+  echo ${base}
+
+  cutadapt -g TGCAG ${base}.tiny.fastq.gz -o ${base}.tiny_trimmed.fastq.gz 
+
+done
+
+```
+
+Yay! You should see a little report for each of these files showing how many reads were trimmed and some other info (how long are the reads, etc.).
+
+You can check if the trimmed files are there with:
+```html
+ls *trimmed*
+```
+And you can use `less` to check that the starts of the reads in a file are no longer identical, since the portion representing adapter sequence has been removed.
+
+Our reads are now ready to be mapped to the genome.
+
+## Building an index of our genome
+
+First we have to index our genome. We'll do that with the bowtie2-build command. This will generate a lot of files that describe different aspects of our genome
+
+We give bowtie2-build two things, the name of our genome, and a general name to label the output files. I always keep the name of the output files the same as the original genome file (without the .fna.gz extension) to avoid confusion (what's this file for?).
+
+```html
+
+bowtie2-build Ppar_tinygenome.fna.gz Ppar_tinygenome
+
+```
+This should produce several output files with extensions including: .bt2 and rev.1.bt2 etc (six files in total)
+
+## Map reads to the genome
+
+Let's map those reads using a for loop
+
+```html
+for filename in *.tiny_trimmed.fastq.gz
+do
+
+  base=$(basename $filename .tiny_trimmed.fastq.gz)
+  echo ${base}
+
+  bowtie2 -x Ppar_tinygenome -U ${base}.tiny_trimmed.fastq.gz -S ${base}.sam
+
+done
+
+```
+
+You should see a bunch of text telling you all about how well our reads mapped to the genome. For this example we're getting a low percentage (20-30%) because of how the genome and reads were subset for this exercise. The full genome and full read files have a much higher mapping rate (70-80%) than our subset. 
+
+You'll also notice that we have made a bunch of .sam files. .sam stands for Sequence Alignment Map file. Let's use `less` to look at one of these files using `less`
+
+There are several columns of data in a sam file
+
+## sam to bam file conversion
+
+The next step is to convert our sam file to a bam (Binary Alignment Map file). This gets our file ready to be read by angsd the program we're going to use to call SNPs.
+
+```html
+for filename in *.sam
+do
+
+  base=$(basename $filename .sam)
+  echo ${base}
+  
+  samtools view -bhS ${base}.sam | samtools sort -o ${base}.bam
+
+done
+
+```
+
+## Genotype likelihoods
+
+There are many ways and many programs that call genotypes. The program that we will use calculates genotype likelihoods, which account for uncertainty due to sequencing errors and/or mapping errors and is one of several programs in the package ANGSD. The purpose of this class is not to discuss which program is the "best", but to teach you to use some commonly used programs.
+
+angsd needs a text file with the `.bam` file names listed. We can make that by running the command below
+
+```html
+
+ls *.bam > bam.filelist
+
+```
+
+Look at the list:
+```html
+cat bam.filelist
+```
+
+We want to run the command `angsd` in angsd program to calculate genotype likelihoods. Take a look at the files in the angsd_env folder to see if you can find the `angsd` command. Hint: commands are often listed in a folder called "bin"! 
+
+Now alter the command given below to reflect the path for the `angsd` command. Write a bash script that loads anaconda3, activates the angsd conda environment, and runs the command. Think carefully about where the script is running from, and whether the program will be able to find the `angsd` command and your "bam.filelist" file.
+
+```html
+
+<path_to>/angsd -bam bam.filelist -GL 1 -out genotype_likelihoods -doMaf 2 -SNP_pval 1e-2 -doMajorMinor 1
+
+```
+
+If the script worked, you'll see two new files. The file with a .arg extension contains a record of the script we ran to generate the output,  and a .maf file contains the minor allele frequencies and is the main output file. We'll go over the components of the .maf file in class.
+
+
+### In-class exercises
+1. Map the untrimmed files to the genome. How do the alignments compare?
+
+2. Use cutadapt to trim the sequences to 70 bp like they did in the Xuereb et al. 2018 paper. Write the output of cutadapt to an .70bp.trimmed.fastq.gz and then map these 70bp, trimmed reads to the genome. How do they compare to our .trimmed reads?
+
+3. Change the parameters of the angsd genotype likelihoods command. How many more/less SNPs do we recover if we lower or raise the SNP p-value? 
+
+4. Run fastqc on our .trimmed reads and compare the html with the untrimmed files. 
