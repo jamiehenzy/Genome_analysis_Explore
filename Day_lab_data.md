@@ -26,8 +26,9 @@ $ <program_name_here> <file_name>*
 ```
 Remember that to view the reports, you need to access the html files through the OOD portal of Explorer. 
 
-*Are there any red flags? Use chat or claude to help you figure out if you should be concerned.
-*Do you need to trim the sequences?
++ Are there any red flags? Use chat or Claude to help you figure out if you should be concerned.
+
++ Do you need to trim the sequences?
 
 ## Building an index of our genome
 
@@ -83,7 +84,7 @@ This assignment is the first in which you have used a full-scale data set, givin
 
 Keep troubleshooting until it works! For help, use these resources:
 
-*Copy your error message into chatgpt or claude
++ Copy your error message into chatgpt or Claude
 
-*Consult with your classmates on the Discussion forum on Canvas
++ Consult with your classmates on the Discussion forum on Canvas
 
