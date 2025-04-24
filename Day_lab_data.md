@@ -82,5 +82,8 @@ done
 This assignment is the first in which you have used a full-scale data set, giving you a taste of the time these operations can take and some of the snags that can trip you up.
 
 Keep troubleshooting until it works! For help, use these resources:
+
 *Copy your error message into chatgpt or claude
+
 *Consult with your classmates on the Discussion forum on Canvas
+
