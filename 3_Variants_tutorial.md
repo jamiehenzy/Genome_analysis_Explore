@@ -198,6 +198,6 @@ If the script worked, you'll see two new files. The file with a .arg extension c
 
 ## Submission
 + Saved session with hash-comments indicating each step performed
-+ Session should show commands and output, with any extraneous output cleanup up
++ Session should show commands and output, with any extraneous output cleaned up
 + Text file with answers to in-class exercises (no need to show commands and output)
 + For question 3 (in-class) indicate two other p-values you tried and how many SNPs each value produced
