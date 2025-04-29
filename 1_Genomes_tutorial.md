@@ -82,4 +82,8 @@ Now you can use the emboss command `infoseq` to see what a file contains:
 
 **Remember to practice using tab-complete to save time and prevent mistakes!**
 
+## Submission:
++ README that includes the five pieces of genome information for all five genomes (this will be in a separate location from the README you will include for the 02_Explore! assignment as a whole)
++ Well organized directories containing the five genomes, reads, and gtf file; arranged in user-friendly way
++ Saved session including hashed questions and answers to each of the five questions, along with the commands you used and output 
 
