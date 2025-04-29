@@ -1,5 +1,5 @@
 # Getting started with Bowtie 2: Lambda phage example
-Bowtie 2 is available as a module on Explorer. The files you will be working with are the lambda phage genome and a set of paired-end reads. Download these from the "examples" folder at [this GitHub site: ]([https://pages.github.com/)(https://github.com/BenLangmead/bowtie2). In this exercise, adapted from the Bowtie2 manual, you will learn to index a genome and align the reads to it using a simple phage genome to start.
+Bowtie 2 is available as a module on Explorer. The files you will be working with are the lambda phage genome and a set of paired-end reads that you downloaded for the previous tutorial. (If you do not have them, download them from the "examples" folder at [this GitHub site: ]([https://pages.github.com/)(https://github.com/BenLangmead/bowtie2)). In this exercise, adapted from the Bowtie2 manual, you will learn to index a genome and align the reads to it using a simple phage genome to start.
 
 Use `head` to peek at each of the three files. Using UNIX commands, determine the length of the lambda phage genome, and the number of sequencing reads in each of the two fastq files. Show your commands and the output.
 
@@ -56,3 +56,9 @@ Then to view the variants, run the command below, directing output to a file tha
 `bcftools view eg2.raw.bcf > variants.txt`
 
 View the file!
+
+## Submission
++ Directory and subdirectories as needed with all files related to the tutorial
++ User-friendly file and directory naming and arrangement
++ Saved session showing commands and output, hashed with brief statements of what the command will do
+  
