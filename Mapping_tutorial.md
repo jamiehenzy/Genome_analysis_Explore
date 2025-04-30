@@ -158,3 +158,8 @@ Keep troubleshooting until it works! For help, use these resources:
 + Copy your error message into chatgpt or Claude
 + Consult with your classmates on the Discussion forum on Canvas
 
+## Submission
++ all files associated with tutorial, organized in user-friendly way
++ all scripts you ran
++ text file with notes on general impressions of quality score report
+
