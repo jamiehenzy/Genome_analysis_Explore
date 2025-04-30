@@ -130,7 +130,6 @@ mkdir -p aligned_output
 
 # Loop through all sample prefixes
 for sample in $(ls ${FASTQ_DIR}/*_1.fastq | sed 's/_1.fastq$//' | xargs -n1 basename); do
-    echo "Processing sample: $sample"
     
     # Define input files
     READ1="${FASTQ_DIR}/${sample}_1.fastq"
@@ -147,10 +146,7 @@ for sample in $(ls ${FASTQ_DIR}/*_1.fastq | sed 's/_1.fastq$//' | xargs -n1 base
          --outSAMtype BAM SortedByCoordinate \
          --limitBAMsortRAM 40000000000
          
-    echo "Finished processing $sample"
 done
-
-echo "All alignments complete"
 
 ```
 We'll use these mapped reads for our upcoming differential gene expression (DGE) assignment.
