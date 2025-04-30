@@ -149,7 +149,7 @@ for sample in $(ls ${FASTQ_DIR}/*_1.fastq | sed 's/_1.fastq$//' | xargs -n1 base
 done
 
 ```
-We'll use these mapped reads for our upcoming differential gene expression (DGE) assignment.
+Find the new directory "aligned_output" and use `ls -l` to view the contents in long form. Look at the column of sizes to check that all of the files that end in .bam have content. These should be the largest files. We'll use these mapped reads for our upcoming differential gene expression (DGE) assignment.
 
 This assignment is the first in which you have used a full-scale data set, giving you a taste of the time these operations can take and some of the snags that can trip you up.
 
