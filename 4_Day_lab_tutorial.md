@@ -2,9 +2,9 @@ This last component of the "Explore" assignment pulls together what you've learn
 
 For this assignment, you are given less guidance because you are expected to use knowledge you have gained in previous assignments and class. However, please always remember to request a computing node before beginning any work.
 
-# Day lab RNA-seq data
+# RNA-seq data
 
-The lab of NU researcher Tovah Day generated some RNA-seq data from an experiment you'll learn more about for the differential gene expression assignment. You'll find the files in our course data folder. For now, we want to:
+In the Genomes tutorial, you learned to download genome sequences from various sources. You also downloaded a couple of files of sequencing reads from GitHub. However, a major repository of sequencing reads is the GEO (Gene Expression Omnibus) database. You can use a tool called sra_toolkit, available as a module on Explorer, to download a set of reads from an experiment involving human cell lines. Then you'll align those reads to the indexed human genome sequence.
 
 + assess the quality of the reads and do any necessary modifications
 + index the human genome (with STAR)
