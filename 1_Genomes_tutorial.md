@@ -31,9 +31,9 @@ REMEMBER TO FIRST REQUEST A COMPUTING NODE.
 
 Let's walk through this for the first genome, Borrelia bergdorferei. Google "NCBI" to get to the main page. Next to the search window, from the dropdown menu select "Genome", and enter the accession number GCF_000008685.2. You'll be taken to a page that shows a table with the assembly number on the left. Click the assembly number (starts with ASM) and you'll be taken to a page of useful information about the genome, some of which you'll need for your documentation (see below). 
 
-To download the genome, click the FTP link to go to the list of files available. Scan to look for a fasta nucleotide file, which will end in ".fna" followed by ".gz", since it is compressed. Right-click to Copy Link Address and use the `wget` command to download the sequence to your Explorer directory. Et voilá!
+To download the genome, click the FTP (**f**ile **t**ransfer **p**rotocol) link near the top of the page to go to the list of files available. Scan to look for a fasta nucleotide file, which will end in ".fna" followed by ".gz", since it is compressed. Right-click to Copy Link Address and use the `wget` command to download the sequence to your Explorer directory. Et voilá!
 
-Do the same for C. elegans and Lambda phage.
+Do the same for _C. elegans_ and Lambda phage.
 
 For the human genome, go to the Ensembl site (Google "ensembl human genome"). Be sure the correct assembly is shown in the upper left "Genome assembly" pane. Choose "Download DNA sequence (FASTA)". 
 
