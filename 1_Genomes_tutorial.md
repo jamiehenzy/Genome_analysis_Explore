@@ -79,7 +79,7 @@ Now you can use the emboss command `infoseq` to see what a file contains:
 * How many sequence files are in the worm genome?
 * How many sequence files are in the Borrelia genome?
 * Which sequence in the worm genome has the lowest GC%?
-* Which sequence in Borrelia has the highest GC%?
+* Which plasmid in Borrelia has the highest GC%? What is interesting about this plasmid?
 
 **Remember to practice using tab-complete to save time and prevent mistakes!**
 
