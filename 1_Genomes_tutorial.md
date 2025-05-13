@@ -14,7 +14,7 @@ Always make sure you're clear on what the sequences you are working with represe
 In this exercise you'll download **reference genome sequences** from several species:
 * _B burgdorferei_ (Lyme disease bacterium); GCF_000008685.2
 * _C elegans_ (lab worm); GCF_000002985.6
-* _Parastichopus parvimensis_ (sea cucumber, in the course data folder "Sea_cuke")
+* _Parastichopus parvimensis_ (sea cucumber, in course data directory)
 * _Homo sapiens_ (most of us); GCA_000001405.29
 * Lambda phage (a famous virus that infects bacteria); NC_001416.1
 
@@ -33,7 +33,7 @@ Let's walk through this for the first genome, Borrelia bergdorferei. Google "NCB
 
 To download the genome, click the FTP (**f**ile **t**ransfer **p**rotocol) link near the top of the page to go to the list of files available. Scan to look for a fasta nucleotide file, which will end in ".fna" followed by ".gz", since it is compressed. Right-click to Copy Link Address and use the `wget` command to download the sequence to your Explorer directory. Et voilá!
 
-Do the same for _C. elegans_ and Lambda phage, choosing the topmost assembly for each.
+Do the same for _C. elegans_ and Lambda phage, choosing the topmost assembly for each. For the sea cucumber, **copy** the Sea_cuke directory in the course data folder into your own directory.
 
 For the human genome, go to the Ensembl site (Google "ensembl human genome"). Be sure the correct assembly is shown in the upper left "Genome assembly" pane. Choose "Download DNA sequence (FASTA)". 
 
