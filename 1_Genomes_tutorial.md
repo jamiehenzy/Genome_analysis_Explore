@@ -14,7 +14,7 @@ Always make sure you're clear on what the sequences you are working with represe
 In this exercise you'll download **reference genome sequences** from several species:
 * _B burgdorferei_ (Lyme disease bacterium); GCF_000008685.2
 * _C elegans_ (lab worm); GCF_000002985.6
-* _Parastichopus parvimensis_ (sea cucumber)
+* _Parastichopus parvimensis_ (sea cucumber, in the course data folder "Sea_cuke")
 * _Homo sapiens_ (most of us); GCA_000001405.29
 * Lambda phage (a famous virus that infects bacteria); NC_001416.1
 
