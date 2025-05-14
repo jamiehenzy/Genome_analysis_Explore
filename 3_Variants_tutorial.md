@@ -1,6 +1,6 @@
 # What is a Genetic Variant?
 
-The files we'll work with are in the course "data" folder for 02_Explore/Sea_cuke. You should see 6 files with a `.fastq.gz` extension and 1 genome file with a `.fna.gz` extension. Copy these into your own folder before working with them (remember to request a computing node before copying – these are large files).
+The files we'll work with are in the course "data" folder for 02_Explore/Sea_cuke. You should see 6 files with a `.fastq.gz` extension and 1 genome file with a `.fna.gz` extension. **Copy** these into your own folder before working with them (remember to request a computing node before copying – these are large files).
 
 The data are from an excellent marine genomics study on sea cucumber population genetics ([Xuereb et al. 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.14589)). For simplification, we're using only a subsample of the reference genome and raw reads from only 5 individuals of the species _Parastichopus californicus_. 
 
@@ -13,7 +13,6 @@ The programs we'll use are the following:
 + angsd: will find variants from the aligned reads
 
 Some of these tools are available as modules. Others are installed in conda environments that are available in the course "shared" folder.
-What additional module do you need to load in order to activate a conda environment?
 
 After you have loaded and/or activated the various programs, we're ready to get going. It's always good to first have a look at our data to make sure we know what (and where) everything is. Use UNIX commands to determine:
 
@@ -45,7 +44,7 @@ SRR6805880.tiny_fastqc.html  SRR6805882.tiny.fastq.gz    SRR6805885.tiny.fastq.g
 
 ```
 
-Looks good! Fastqc generated two new output files for us – a `.html` and a `.zip` file. Notice also that the command worked on compressed files. It will work on either compressed OR uncompressed files.
+Looks good! Fastqc generated two new output files with extensions `.html` and a `.zip`. Notice also that the command worked on compressed files. It will work on either compressed OR uncompressed files.
 
 You may have noticed that fastqc just prefixed the file name to different extensions for the two output files. We can take advantage of that by running fastqc on all our datafiles with the wildcard `*`. Let's run fastqc on the remaining files, then look at the output. 
 
@@ -109,7 +108,7 @@ Our reads are now ready to be mapped to the genome.
 
 First we have to index our genome. We'll do that with the bowtie2-build command, just as we did for lambda phage in the previous tutorial. 
 
-Recall that we give bowtie2-build two things – the name of our genome, and a general name to label the output files. A good practice is to keep the name of the output files the same as the original genome file (without the .fna.gz extension) to avoid confusion.
+Recall that we give bowtie2-build two things – the name of our genome, and a general name (prefix) to label the output files. A good practice is to keep the name of the output files the same as the original genome file (without the .fna.gz extension) to avoid confusion.
 
 ```html
 
@@ -142,7 +141,7 @@ Use `less` to look at one of the SAM files, just as you did in the lambda phage 
 
 ## sam to bam file conversion
 
-The next step is to convert our sam file to a bam (Binary Alignment Map file). This gets our file ready to be read by angsd the program we're going to use to call SNPs (type of variants known as "single nucleotide polymorphisms").
+The next step is to convert our sam file to a bam (Binary Alignment Map file). This gets our file ready to be read by angsd – the program we're going to use to call SNPs (type of variants known as "single nucleotide polymorphisms").
 
 ```html
 for filename in *.sam
@@ -174,9 +173,9 @@ Look at the list:
 cat bam.filelist
 ```
 
-We want to run the command `angsd` in angsd program to calculate genotype likelihoods. Take a look at the files in the angsd_env folder to see if you can find the `angsd` command. Hint: commands are often listed in a folder called "bin"! 
+We want to run the command `angsd` in the angsd program to calculate genotype likelihoods. Take a look at the files in the angsd_env folder to see if you can find the `angsd` command. Hint: commands are often listed in a folder called "bin"! 
 
-Now alter the command below to reflect the path for the `angsd` command. Write a **bash script** that loads anaconda3, activates the angsd conda environment, and runs the command. Think carefully about where the script is running from, and whether your script as written will allow the program to find the `angsd` command and your "bam.filelist" file.
+Now alter the command below to reflect the path for the `angsd` command. Write a **bash script** that loads anaconda, activates the angsd conda environment, and runs the command. Think carefully about where the script is running from, and whether your script as written will allow the program to find the `angsd` command and your "bam.filelist" file.
 
 ```html
 
@@ -184,7 +183,7 @@ Now alter the command below to reflect the path for the `angsd` command. Write a
 
 ```
 
-If the script worked, you'll see two new files. The file with a .arg extension contains a record of the script we ran to generate the output,  and a .maf file contains the minor allele frequencies and is the main output file. We'll go over the components of the .maf file in class.
+If the script worked, you'll see two new files. The file with a .arg extension contains a record of the script we ran to generate the output,  and a .maf file contains the **m**inor **a**llele **f**requencies and is the main output file. We'll go over the components of the .maf file in class.
 
 
 ### In-class exercises
