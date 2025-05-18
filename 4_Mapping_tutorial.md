@@ -45,7 +45,7 @@ prefetch --option-file accessions.txt
 
 ```
 
-After it runs, there will be a new directory, "sra_files", with eight files that are in a format that you cannot read. We need to convert these to fastq format. Again, be sure to make changes as neede to the script:
+After it runs, there will be a new directory, "sra_files", with eight files that are in a format that you cannot read. We need to convert these to fastq format. Again, be sure to make changes as needed to the script:
 
 ```html
 #!/bin/bash
@@ -70,7 +70,7 @@ When the job has finished, you'll see a directory called, "fastq_files" that con
 
 ## Raw read quality control
 
-Use the program you used previously to examine the quality of the reads. You do not to look at all eight reports. Just pick two or three. Since the samples were all run at the same time, the quality should be similar for all of them.
+Use the program you used previously to examine the quality of the reads. You do not need to look at all eight reports. Just pick two or three. Since the samples were all run at the same time, the quality should be similar for all of them.
 
 + Are there any red flags? Use chat or Claude to help you figure out if you should be concerned.
 + Do you need to trim the sequences?
