@@ -95,7 +95,7 @@ Write a BATCH script for indexing, and note that it can take several hours for t
 #Activate the STAR conda environment (two steps!)
 
 #Run the indexing command (you'll need to customize this to reflect the locations of your files)
-STAR --runMode genomeGenerate --genomeDir ref/ --genomeFastaFiles Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa --sjdbGTFfile Homo_sapiens.GRCh38.113.gtf --runThreadN 16
+STAR --runMode genomeGenerate --genomeDir ref/ --genomeFastaFiles Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa --sjdbGTFfile Homo_sapiens.GRCh38.114.gtf --runThreadN 16
 
 ```
 
