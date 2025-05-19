@@ -163,3 +163,9 @@ Keep troubleshooting until it works! For help, use these resources:
 + all scripts you ran
 + text file with notes on general impressions of quality score report
 
+## Don't forget! 
++ README file
++ no extraneous lines of text (limit output to 10 lines max)
++ permissions set so that I can access everything
++ clean front porch
+
