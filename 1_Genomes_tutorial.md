@@ -37,7 +37,7 @@ Do the same for _C. elegans_ and Lambda phage, choosing the topmost assembly for
 
 For the human genome, go to the Ensembl site (Google "ensembl human genome"). Be sure the correct assembly is shown in the upper left "Genome assembly" pane. Choose "Download DNA sequence (FASTA)". 
 
-Whoa! There are lots of files to choose from. Select the "soft-masked" version (Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz) and download it using `wget`.
+**Whoa! There are lots of files to choose from. Select the "soft-masked" version (Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz) and download it using `wget`.**
 
 Now for our **other** files.
 
