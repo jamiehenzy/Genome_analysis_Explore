@@ -99,7 +99,7 @@ STAR --runMode genomeGenerate --genomeDir ref/ --genomeFastaFiles Homo_sapiens.G
 
 ```
 
-If it works, you'll see fourteen files added to your directory.
+If it works, you'll see sixteen files added to your directory.
 
 ## Map reads to the genome
 
