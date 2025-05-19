@@ -21,7 +21,7 @@ In this exercise you'll download **reference genome sequences** from several spe
 You'll also download some **other** files containing sequencing reads (fastq format), and a genome annotation file (.gtf) that contains information on genomic features in the human genome.
 
 * reads_1.fq and reads_2.fq (from lambda phage)
-* Homo_sapiens.GRCh38.113.gtf.gz
+* Homo_sapiens.GRCh38.114.gtf.gz
 
 REMEMBER TO FIRST REQUEST A COMPUTING NODE.
 
@@ -41,7 +41,7 @@ Whoa! There are lots of files to choose from. Select the "soft-masked" version (
 
 Now for our **other** files.
 
-* GTF file for human genome: Go back to the Ensembl human genome page and look at the upper right pane, "Genome annotation". Click on the link to download a gtf file, and download Homo_sapiens.GRCh38.113.gtf.gz
+* GTF file for human genome: Go back to the Ensembl human genome page and look at the upper right pane, "Genome annotation". Click on the link to download a gtf file, and download Homo_sapiens.GRCh38.114.gtf.gz
 * reads from Lambda phage project: Google "BenLangmead bowtie2 github"; click on the "examples" directory, then "reads". If your click on "reads_1.fq", you'll get a message about not being able to show such a big file. No problem! Right-click on "raw" (on the right) to Copy Link Address, then use `wget` to download the sequence. Do the same for "reads_2.fq".  
 
 Unzip any of the sequences that end in gz using the gunzip command: `gunzip <file.gz>`
