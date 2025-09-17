@@ -108,7 +108,7 @@ Our reads are now ready to be mapped to the genome.
 
 First we have to index our genome. We'll do that with the bowtie2-build command, just as we did for lambda phage in the previous tutorial. 
 
-Recall that we give bowtie2-build two things – the name of our genome, and a general name (prefix) to label the output files. A good practice is to keep the name of the output files the same as the original genome file (without the .fna.gz or .fana extension) to avoid confusion.
+Recall that we give bowtie2-build two things – the name of our genome, and a general name (prefix) to label the output files. A good practice is to keep the name of the output files the same as the original genome file (without the .fna.gz or .fna extension) to avoid confusion.
 
 ```html
 
