@@ -1,6 +1,6 @@
 # What is a Genetic Variant?
 
-The files we'll work with are in the course "data" folder for 02_Explore/Sea_cuke. You should see 6 files with a `.fastq.gz` extension and 1 genome file with a `.fna.gz` extension. **Copy** these into your own folder before working with them (remember to request a computing node before copying – these are large files).
+The files we'll work with are in the Sea_cuke directory in the course "data" folder. You should see 6 files with a `.fastq.gz` extension and 1 genome file with a `.fna.gz` extension. **Copy** these into your own folder before working with them **(remember to request a computing node before copying – these are large files)**.
 
 The data are from an excellent marine genomics study on sea cucumber population genetics ([Xuereb et al. 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.14589)). For simplification, we're using only a subsample of the reference genome and raw reads from only 5 individuals of the species _Parastichopus californicus_. 
 
@@ -14,7 +14,7 @@ The programs we'll use are the following:
 
 Some of these tools are available as modules. Others are installed in conda environments that are available in the course "shared" folder.
 
-After you have loaded and/or activated the various programs, we're ready to get going. It's always good to first have a look at our data to make sure we know what (and where) everything is. Use UNIX commands to determine:
+After you have loaded and/or activated the various programs, we're ready to get going. It's always good to first have a look at our data to make sure we know what (and where) everything is. First unzip the files, then use UNIX commands to determine:
 
 + The header information of the genome sequence
 + What the read files look like
@@ -25,21 +25,21 @@ After you have loaded and/or activated the various programs, we're ready to get 
 Remember how in the first assignment, we got a feel for the quality of reads by using `grep` to search for occurrences of multiple N's? Well as you may have guessed, there ARE more sophisticated tools to determine the overall quality of a set of reads! The program `fastqc` can do this, with this command:
 
 ```html
-$ fastqc SRR6805880.tiny.fastq.gz
+$ fastqc SRR6805880.tiny.fastq
 
 ```
 * Readout will say: 
-  + Started analysis for SRR6805880.tiny.fastq.gz
-  + Analysis complete for SRR6805880.tiny.fastq.gz
+  + Started analysis for SRR6805880.tiny.fastq
+  + Analysis complete for SRR6805880.tiny.fastq
 
 
 Let's check that it worked
 ```html
 $ ls
 
-Ppar_tinygenome.fna.gz       SRR6805880.tiny_fastqc.zip  SRR6805883.tiny.fastq.gz
-SRR6805880.tiny.fastq.gz     SRR6805881.tiny.fastq.gz    SRR6805884.tiny.fastq.gz
-SRR6805880.tiny_fastqc.html  SRR6805882.tiny.fastq.gz    SRR6805885.tiny.fastq.gz
+Ppar_tinygenome.fna       SRR6805880.tiny_fastqc.zip  SRR6805883.tiny.fastq
+SRR6805880.tiny.fastq        SRR6805881.tiny.fastq    SRR6805884.tiny.fastq
+SRR6805880.tiny_fastqc.html  SRR6805882.tiny.fastq    SRR6805885.tiny.fastq
 
 
 ```
@@ -56,7 +56,7 @@ You initially get an error message because fastqc doesn't see the .fastq file ex
 
 To view the output of fastqc, we'll go to the OOD portal of Explorer and view our files from there. On OOD, use "change directory" to type in the file path of the directory you've been working in for this exercise. When you see your files displayed, you can use the dropdown menu next to any html file that was produced and either hit "view" or "download". 
 
-Voilá! You should see a beautiful graphic output displaying various aspects of your data quality!
+Voilà! You should see a beautiful graphic output displaying various aspects of your data quality!
 
 ## Trimming to remove adapters
 
