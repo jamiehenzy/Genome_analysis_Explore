@@ -2,7 +2,7 @@
 
 The files we'll work with are in the Sea_cuke directory in the course "data" folder. You should see 6 files with a `.fastq.gz` extension and 1 genome file with a `.fna.gz` extension. **Copy** these into your own folder before working with them **(remember to request a computing node before copying – these are large files)**.
 
-The data are from an excellent marine genomics study on sea cucumber population genetics ([Xuereb et al. 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.14589)). For simplification, we're using only a subsample of the reference genome and raw reads from only 5 individuals of the species _Parastichopus californicus_. 
+The data are from an excellent marine genomics study on sea cucumber population genetics ([Xuereb et al. 2018](https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.14589)). For simplification, we're using only a subsample of the reference genome and raw reads from only 6 individuals of the species _Parastichopus californicus_. 
 
 The programs we'll use are the following:
 
