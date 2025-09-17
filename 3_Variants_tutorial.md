@@ -75,20 +75,20 @@ $ cutadapt -g SEQUENCETOTRIM name_of_input_file -o name_of_output_file
 Let's do this on one of our files to test it out.
 
 ```html
-cutadapt -g TGCAG SRR6805880.tiny.fastq.gz -o SRR6805880.tiny_trimmed.fastq.gz 
+cutadapt -g TGCAG SRR6805880.tiny.fastq -o SRR6805880.tiny_trimmed.fastq 
 
 ```
 This works for a single file, but if we want to do it for all our read files we need to either do them all individually (slow and error prone) or use a for loop.
 
 ```html
 
-for filename in *.tiny.fastq.gz
+for filename in *.tiny.fastq
 do
 
-  base=$(basename $filename .tiny.fastq.gz)
+  base=$(basename $filename .tiny.fastq)
   echo ${base}
 
-  cutadapt -g TGCAG ${base}.tiny.fastq.gz -o ${base}.tiny_trimmed.fastq.gz 
+  cutadapt -g TGCAG ${base}.tiny.fastq -o ${base}.tiny_trimmed.fastq 
 
 done
 
@@ -108,11 +108,11 @@ Our reads are now ready to be mapped to the genome.
 
 First we have to index our genome. We'll do that with the bowtie2-build command, just as we did for lambda phage in the previous tutorial. 
 
-Recall that we give bowtie2-build two things – the name of our genome, and a general name (prefix) to label the output files. A good practice is to keep the name of the output files the same as the original genome file (without the .fna.gz extension) to avoid confusion.
+Recall that we give bowtie2-build two things – the name of our genome, and a general name (prefix) to label the output files. A good practice is to keep the name of the output files the same as the original genome file (without the .fna.gz or .fana extension) to avoid confusion.
 
 ```html
 
-bowtie2-build Ppar_tinygenome.fna.gz Ppar_tinygenome
+bowtie2-build Ppar_tinygenome.fna Ppar_tinygenome
 
 ```
 This should produce several output files with extensions including: .bt2 and rev.1.bt2 etc (six files in total).
@@ -122,13 +122,13 @@ This should produce several output files with extensions including: .bt2 and rev
 Let's map those reads using a for loop
 
 ```html
-for filename in *.tiny_trimmed.fastq.gz
+for filename in *.tiny_trimmed.fastq
 do
 
-  base=$(basename $filename .tiny_trimmed.fastq.gz)
+  base=$(basename $filename .tiny_trimmed.fastq)
   echo ${base}
 
-  bowtie2 -x Ppar_tinygenome -U ${base}.tiny_trimmed.fastq.gz -S ${base}.sam
+  bowtie2 -x Ppar_tinygenome -U ${base}.tiny_trimmed.fastq -S ${base}.sam
 
 done
 
