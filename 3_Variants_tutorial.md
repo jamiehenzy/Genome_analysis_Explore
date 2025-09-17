@@ -115,11 +115,11 @@ Recall that we give bowtie2-build two things – the name of our genome, and a g
 bowtie2-build Ppar_tinygenome.fna Ppar_tinygenome
 
 ```
-This should produce several output files with extensions including: .bt2 and rev.1.bt2 etc (six files in total).
+This should produce several output files with extensions including: .bt2 and rev.1.bt2 etc (six files in total). I like to make a new directory (e.g. "index") and move these files into it. 
 
 ## Map reads to the genome
 
-Let's map those reads using a for loop
+Let's map those reads using a for loop. I've made a directory `index` that includes my .bt2 files.
 
 ```html
 for filename in *.tiny_trimmed.fastq
@@ -128,7 +128,7 @@ do
   base=$(basename $filename .tiny_trimmed.fastq)
   echo ${base}
 
-  bowtie2 -x Ppar_tinygenome -U ${base}.tiny_trimmed.fastq -S ${base}.sam
+  bowtie2 -x index/Ppar_tinygenome -U ${base}.tiny_trimmed.fastq -S ${base}.sam
 
 done
 
