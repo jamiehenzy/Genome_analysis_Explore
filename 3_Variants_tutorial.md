@@ -68,7 +68,7 @@ There are many programs that can be used to "trim" such sequences from the reads
 
 
 ```html
-$ cutadapt -g SEQUENCETOTRIM -o name_of_input_file name_of_output_file 
+$ cutadapt -g SEQUENCETOTRIM name_of_input_file -o name_of_output_file 
 
 ```
 
