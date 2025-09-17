@@ -14,7 +14,7 @@ The programs we'll use are the following:
 
 Some of these tools are available as modules. Others are installed in conda environments that are available in the course "shared" folder.
 
-After you have loaded and/or activated the various programs, we're ready to get going. It's always good to first have a look at our data to make sure we know what (and where) everything is. First unzip the files, then use UNIX commands to determine:
+It's always good to first have a look at our data to make sure we know what (and where) everything is. First unzip the files, then use UNIX commands to determine:
 
 + The header information of the genome sequence
 + What the read files look like
@@ -22,7 +22,7 @@ After you have loaded and/or activated the various programs, we're ready to get 
 
 ## Raw read quality control
 
-Remember how in the first assignment, we got a feel for the quality of reads by using `grep` to search for occurrences of multiple N's? Well as you may have guessed, there ARE more sophisticated tools to determine the overall quality of a set of reads! The program `fastqc` can do this, with this command:
+Remember how in the first assignment, we got a feel for the quality of reads by using `grep` to search for occurrences of multiple N's? Well as you may have guessed, there ARE more sophisticated tools to determine the overall quality of a set of reads! The program `fastqc` can do this. Load the module, then try out this command:
 
 ```html
 $ fastqc SRR6805880.tiny.fastq
@@ -72,7 +72,7 @@ $ cutadapt -g SEQUENCETOTRIM name_of_input_file -o name_of_output_file
 
 ```
 
-Let's do this on one of our files to test it out.
+Activate the cutadapt program, then let's test it out on one of our fastq files:
 
 ```html
 cutadapt -g TGCAG SRR6805880.tiny.fastq -o SRR6805880.tiny_trimmed.fastq 
@@ -106,7 +106,7 @@ Our reads are now ready to be mapped to the genome.
 
 ## Building an index of our genome
 
-First we have to index our genome. We'll do that with the bowtie2-build command, just as we did for lambda phage in the previous tutorial. 
+First we have to index our genome. We'll do that with the bowtie2-build command, just as we did for lambda phage in the previous tutorial. You'll need to load the bowtie2 module.
 
 Recall that we give bowtie2-build two things – the name of our genome, and a general name (prefix) to label the output files. A good practice is to keep the name of the output files the same as the original genome file (without the .fna.gz or .fna extension) to avoid confusion.
 
@@ -141,7 +141,7 @@ Use `less` to look at one of the SAM files, just as you did in the lambda phage 
 
 ## sam to bam file conversion
 
-The next step is to convert our sam file to a bam (Binary Alignment Map file). This gets our file ready to be read by angsd – the program we're going to use to call SNPs (type of variants known as "single nucleotide polymorphisms").
+The next step is to convert our sam files to bam (Binary Alignment Map) files using the module `samtools`. This step prepares our files to be read by angsd – the program we're going to use to call SNPs (type of variants known as "single nucleotide polymorphisms"). 
 
 ```html
 for filename in *.sam
@@ -158,7 +158,7 @@ done
 
 ## Genotype likelihoods
 
-There are many ways and many programs that call genotypes. The program that we will use calculates genotype likelihoods, which account for uncertainty due to sequencing errors and/or mapping errors and is included in the package ANGSD. The purpose of this class is not to discuss which program is the "best", but to teach you to use some commonly used programs.
+There are many ways and many programs that call genotypes. The program that we will use calculates genotype likelihoods, which account for uncertainty due to sequencing errors and/or mapping errors and is included in the package ANGSD. You'll need to activate the angsd program, but **first, deactivate the cutadapt env (`conda deactivate`) if you're still in it**.
 
 angsd needs a text file with the `.bam` file names listed. We can make this file by running the command:
 
@@ -173,13 +173,11 @@ Look at the list:
 cat bam.filelist
 ```
 
-We want to run the command `angsd` in the angsd program to calculate genotype likelihoods. Take a look at the files in the angsd_env folder to see if you can find the `angsd` command. Hint: commands are often listed in a folder called "bin"! 
-
-Now alter the command below to reflect the path for the `angsd` command. Write a **bash script** that loads anaconda, activates the angsd conda environment, and runs the command. Think carefully about where the script is running from, and whether your script as written will allow the program to find the `angsd` command and your "bam.filelist" file.
+Before running the command below to generate the genotype likelihoods, make sure your "bam.filelist" is in the directory from which you run the command.
 
 ```html
 
-<path_to>/angsd -bam bam.filelist -GL 1 -out genotype_likelihoods -doMaf 2 -SNP_pval 1e-2 -doMajorMinor 1
+angsd -bam bam.filelist -GL 1 -out genotype_likelihoods -doMaf 2 -SNP_pval 1e-2 -doMajorMinor 1
 
 ```
 
