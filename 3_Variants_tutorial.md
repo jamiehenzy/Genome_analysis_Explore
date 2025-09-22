@@ -56,7 +56,7 @@ You initially get an error message because fastqc doesn't see the .fastq file ex
 
 To view the output of fastqc, we'll go to the OOD portal of Explorer and view our files from there. On OOD, use "change directory" to type in the file path of the directory you've been working in for this exercise. When you see your files displayed, you can use the dropdown menu next to any html file that was produced and either hit "view" or "download". 
 
-Voilà! You should see a beautiful graphic output displaying various aspects of your data quality!
+Voilà! You should see a beautiful graphic output displaying various aspects of your data quality! How to interpret the basic stats? See ([this site](https://rtsf.natsci.msu.edu/genomics/technical-documents/fastqc-tutorial-and-faq.aspx)).
 
 ## Trimming to remove adapters
 
