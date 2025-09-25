@@ -45,7 +45,7 @@ prefetch --option-file accessions.txt
 
 ```
 
-After it runs, there will be a new directory, "sra_files", with eight files that are in a format that you cannot read. We need to convert these to fastq format. Again, be sure to make changes as needed to the script:
+Check the new output and error files in your directory. If everything is running smoothly, your output file will continue to update progress. It takes a few minutes or more for all eight files to be processed. After it runs, there will be a new directory, "sra_files", with eight files that are in a format that you cannot read. We need to convert these to fastq format. Again, be sure to make changes as needed to the script:
 
 ```html
 #!/bin/bash
