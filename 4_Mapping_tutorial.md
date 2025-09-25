@@ -77,7 +77,7 @@ Use the program you used previously to examine the quality of the reads. You do 
 
 ## Building an index of our genome
 
-We'll use STAR to index our genome. Although star is listed as a module on Explorer, their version doesn't work so we'll use the one I installed in a conda environment in the course "shared" directory. Instead of "source activate \<pathway>" use "conda activate \<pathway>".
+We'll use STAR to index our genome. Although star is listed as a module on Explorer, their version doesn't work so we'll use the one I installed in a conda environment in the course "shared" directory. 
 
 In the STAR indexing command, you'll need to customize to reflect the location of your files. The --genome-Dir option tells the program to look for the reference genome sequence in a directory named "ref". You may want to create such a directory for your reference and use that option. If your reference sequence is in the same folder as your gtf sequence and the script, you can remove the "--genome-Dir /ref" portion from the command. The --genomeFastaFiles option specifies that the reference genome is in FASTA format and should be left intact. 
 
