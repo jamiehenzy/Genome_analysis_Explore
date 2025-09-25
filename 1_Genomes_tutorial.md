@@ -21,7 +21,7 @@ In this exercise you'll download **reference genome sequences** from several spe
 You'll also download some **other** files containing sequencing reads (fastq format), and a genome annotation file (.gtf) that contains information on genomic features in the human genome.
 
 * reads_1.fq and reads_2.fq (from lambda phage)
-* Homo_sapiens.GRCh38.114.gtf.gz
+* Homo_sapiens.GRCh38.115.gtf.gz
 
 REMEMBER TO FIRST REQUEST A COMPUTING NODE.
 
