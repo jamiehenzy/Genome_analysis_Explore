@@ -66,7 +66,7 @@ do
     fasterq-dump --split-files --outdir ./fastq_files "$acc"
 done
 ```
-When the job has finished, you'll see a directory called, "fastq_files" that contains eight files, each containing millions of fastq reads.
+When the job has finished (it takes awhile), you'll see a directory called, "fastq_files" that contains eight files, each containing millions of fastq reads.
 
 ## Raw read quality control
 
