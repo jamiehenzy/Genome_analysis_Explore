@@ -81,7 +81,7 @@ We'll use STAR to index our genome. Although star is listed as a module on Explo
 
 In the STAR indexing command, you'll need to customize to reflect the location of your files. The --genome-Dir option tells the program to look for the reference genome sequence in a directory named "ref". You may want to create such a directory for your reference and use that option. If your reference sequence is in the same folder as your gtf sequence and the script, you can remove the "--genome-Dir /ref" portion from the command. The --genomeFastaFiles option specifies that the reference genome is in FASTA format and should be left intact. 
 
-Write a BATCH script for indexing, and note that it can take several hours for the task to complete. By default, task time has a limit of four hours, but we can increase it by adding another line to our header to increase the task time to 24 hours:
+Write a BATCH script for indexing, and note that it can take several hours for the task to complete. Make sure the two files you're calling are unzipped (or include the gunzip command in your script). By default, task time has a limit of four hours, but we can increase it by adding another line to our header to increase the task time to 24 hours:
 
 ```html
 #!/bin/bash
