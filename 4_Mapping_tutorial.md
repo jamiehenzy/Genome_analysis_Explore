@@ -164,7 +164,7 @@ Keep troubleshooting until it works! For help, use these resources:
 
 ## Don't forget! 
 + README file
-+ no extraneous lines of text (limit output to 10 lines max)
++ no extraneous lines of text
 + permissions set so that I can access everything
 + clean front porch
 
