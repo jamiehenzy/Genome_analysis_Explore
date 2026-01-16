@@ -41,7 +41,7 @@ For the human genome, go to the Ensembl site (Google "ensembl human genome"). Be
 
 Now for our **other** files.
 
-* GTF file for human genome: Go back to the Ensembl human genome page and look at the upper right pane, "Genome annotation". Click on the link to download a gtf file, and download Homo_sapiens.GRCh38.114.gtf.gz
+* GTF file for human genome: Go back to the Ensembl human genome page and look at the upper right pane, "Genome annotation". Click on the link to download a gtf file, and download Homo_sapiens.GRCh38.115.gtf.gz
 * reads from Lambda phage project: Google "BenLangmead bowtie2 github"; click on the "examples" directory, then "reads". If you click on "reads_1.fq", you'll get a message about not being able to show such a big file. No problem! Right-click on "raw" (on the right) to Copy Link Address, then use `wget` to download the sequence. Do the same for "reads_2.fq".  
 
 Unzip any of the sequences that end in gz using the gunzip command: `gunzip <file.gz>`
@@ -54,7 +54,6 @@ Create a directory in your student folder on Explorer for genomic data, with a *
 *	Structure (such as, linear or circular, how many chromosomes, how many plasmids)
 *	Estimated number of protein-coding genes
 *	Where to access the genome sequence
-* At what coverage it was sequenced
 
 ### Explore the sequences
 
@@ -68,7 +67,7 @@ Check that it worked. To see which modules are loaded into your current session:
 
 Now you have to activate the conda environment, using the `source activate` command and the path to the files that are in the course "shared" folder:
 
-`source activate /courses/BIOL3411.202540/shared/conda_env/emboss_env`
+`source activate /courses/BIOL3411.202630/shared/conda_env/emboss_env`
 
 After entering the command, you'll see that your prompt includes the path of the environment.
 
@@ -84,7 +83,7 @@ Now you can use the emboss command `infoseq` to see what a file contains:
 **Remember to practice using tab-complete to save time and prevent mistakes!**
 
 ## Submission:
-+ **Genomes_info** file that includes the five pieces of genome information for all five genomes
++ **Genomes_info** file that includes the four pieces of genome information for all five genomes
 + Well organized directories containing the five genomes, reads, and gtf file; arranged in user-friendly way
 + Saved session including hashed questions and answers to each of the five questions, along with the commands you used and output 
 
