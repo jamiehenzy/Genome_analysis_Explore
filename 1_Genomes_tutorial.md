@@ -67,7 +67,7 @@ Check that it worked. To see which modules are loaded into your current session:
 
 Now you have to activate the conda environment, using the `source activate` command and the path to the files that are in the course "shared" folder:
 
-`source activate /courses/BIOL3411.202630/shared/conda_env/emboss_env`
+`conda activate /courses/BIOL3411.202630/shared/conda_env/emboss_env`
 
 After entering the command, you'll see that your prompt includes the path of the environment.
 
