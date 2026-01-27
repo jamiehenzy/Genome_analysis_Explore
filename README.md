@@ -9,7 +9,7 @@ For the assignment, complete the following tasks:
 + Tutorial 4: Mapping_tutorial
 
 
-**Failure to follow any one or more of the instructions below may result in zero credit:**
+##**Failure to follow any one or more of the instructions below may result in zero credit:**
 
 + Name and organize files and folders in a user-friendly way.
 + Submit files in your **student** directory 
