@@ -20,7 +20,11 @@ Before writing your batch script it's good to note the version numbers of any mo
 
 # Command
 ```
--J is the jobname; name it whatever you like. -N is the number of nodes you're requesting and -n is the number of threads. -o gives the form of the output file, which in this case will say "output_" followed by the job ID# assigned to the task. Likewise, -e gives the form of the output file.
++ -J is the jobname; name it whatever you like 
++ -N is the number of nodes you're requesting 
++ -n is the number of threads 
++ -o gives the form of the output file, which in this case will say "output_" followed by the job ID# assigned to the task 
++ -e gives the form of the output file
 
 After saving the script, run it with the command:
 
