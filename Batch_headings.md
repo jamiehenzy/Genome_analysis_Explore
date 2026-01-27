@@ -28,7 +28,7 @@ Before writing your batch script it's good to note the version numbers of any mo
 
 After saving the script, run it with the command:
 
-```sbatch script_name.sh```
+```sbatch <script_name>.sh```
 
 Check on its status with the command:
 ```squeue -u user_name```
