@@ -69,7 +69,7 @@ Now you have to activate the conda environment, using the `source activate` comm
 
 `source activate /courses/BIOL3411.202630/shared/emboss_env`
 
-If `source` doesn't work, use `conda`.
+If `source` doesn't work, use `conda init` first, then `conda activate /courses/BIOL3411.202630/shared/emboss_env`.
 
 After entering the command, you'll see that your prompt includes the path of the environment.
 
