@@ -191,8 +191,6 @@ If the script worked, you'll see two new files. The file with a .arg extension c
 
 3. Change the parameters of the angsd genotype likelihoods command. How many more/less SNPs do we recover if we lower or raise the SNP p-value? 
 
-4. Run fastqc on our .trimmed reads and compare the html with the untrimmed files. 
-
 ## Submission
 + Saved session with hash-comments indicating each step performed
 + Session should show commands and output, with any extraneous output cleaned up
