@@ -41,7 +41,7 @@ For the human genome, go to the Ensembl site (Google "ensembl human genome"). Be
 
 Now for our **other** files.
 
-* GTF file for human genome: Go back to the [Ensembl human genome page](https://www.ensembl.org/Homo_sapiens/Info/Index) and look at the upper right pane, "Genome annotation". Click on the link to download a gtf file, and download Homo_sapiens.GRCh38.115.gtf.gz
+* GTF file for human genome: Go back to the https://www.ensembl.org/Homo_sapiens/Info/Index and look at the upper right pane, "Genome annotation". Click on the link to download a gtf file, and download Homo_sapiens.GRCh38.115.gtf.gz
 * reads from Lambda phage project: Google "BenLangmead bowtie2 github"; click on the "examples" directory, then "reads". If you click on "reads_1.fq", you'll get a message about not being able to show such a big file. No problem! Right-click on "raw" (on the right) to Copy Link Address, then use `wget` to download the sequence. Do the same for "reads_2.fq".  
 
 Unzip any of the sequences that end in gz using the gunzip command: `gunzip <file.gz>`
