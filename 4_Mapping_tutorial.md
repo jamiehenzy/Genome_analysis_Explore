@@ -24,7 +24,7 @@ SRR1039513
 SRR1039520
 SRR1039521
 
-These records correspond to reads from the untreated and treated cells of four different cell lines. Each record has millions of reads. We first have to "prefetch" the records, then convert them into fastq format. To fetch all the records in one run, we need to make a text file with all eight accession numbers and name it "accessions.txt". Create this file using nano (or "echo" into a new file).
+These records correspond to reads from the untreated and treated cells of four different cell lines. Each record has millions of reads. We first have to "prefetch" the records, then convert them into fastq format. To fetch all the records in one run, we need to make a text file with all eight accession numbers, each on a separate line, and name it "accessions.txt". Create this file using nano (or "echo" into a new file).
 
 Next we'll write a batch script to run the job on Explorer. Be sure to customize the script to suit your needs.
 
